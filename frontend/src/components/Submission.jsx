@@ -33,8 +33,9 @@ const SubmissionForm = () => {
       .filter((q) => q !== ""); // Remove empty lines
 
     try {
+      const REACT_APP_BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
       const response = await axios.post(
-        "http://localhost:5000/api/submissions/createSubmission",
+        `${REACT_APP_BACKEND_URL}/submissions/createSubmission`,
         {
           name,
           country,
