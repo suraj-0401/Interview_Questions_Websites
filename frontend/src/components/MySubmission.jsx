@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { baseUrl } from "../Url";
 
 const MySubmission = () => {
   const [submissions, setSubmissions] = useState([]);
@@ -9,9 +10,8 @@ const MySubmission = () => {
   useEffect(() => {
     const fetchSubmissions = async () => {
       try {
-        const REACT_APP_BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
         const token = localStorage.getItem("token"); // Assuming token is stored in localStorage
-        const response = await axios.get(`${REACT_APP_BACKEND_URL}/submissions/getUserSubmission`, {
+        const response = await axios.get(`${baseUrl}/api/submissions/getUserSubmission`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

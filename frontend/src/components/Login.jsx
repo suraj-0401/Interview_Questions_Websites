@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api, setAuthToken } from "../api";
 import axios from "axios";
+import { baseUrl } from "../Url";
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
@@ -11,12 +12,10 @@ const Login = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const REACT_APP_BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/auth/login`, { username, password });
+      const response = await axios.post(`${baseUrl}/api/auth/login`, { username, password });
       const { token } = response.data;
       localStorage.setItem("token", token);
       setAuthToken(token);
-      console.log(token)
       onLogin();
       navigate("/");
     } catch (error) {

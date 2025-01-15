@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { baseUrl } from "../Url";
 
 const SubmissionForm = () => {
   const [name, setName] = useState("");
@@ -33,9 +34,8 @@ const SubmissionForm = () => {
       .filter((q) => q !== ""); // Remove empty lines
 
     try {
-      const REACT_APP_BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
       const response = await axios.post(
-        `${REACT_APP_BACKEND_URL}/submissions/createSubmission`,
+        `${baseUrl}/api/submissions/createSubmission`,
         {
           name,
           country,

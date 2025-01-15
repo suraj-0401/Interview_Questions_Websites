@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../api";
 import axios from "axios";
+import { baseUrl } from "../Url";
 
 const Dashboard = () => {
   const [submissions, setSubmissions] = useState([]);
@@ -8,8 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchSubmissions = async () => {
       try {
-        const REACT_APP_BACKEND_URL=process.env.REACT_APP_BACKEND_URL;
-        const response = await axios.get(`${REACT_APP_BACKEND_URL}/submissions/getSubmission`);
+        const response = await axios.get(`${baseUrl}/api/submissions/getSubmission`);
         setSubmissions(response.data);
       } catch (error) {
         console.error("Error fetching submissions:", error);
